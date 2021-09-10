@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { useAuth } from 'contexts/AuthContext';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+const UnauthenticatedApp = React.lazy(
+  () => import('./pages/index/UnauthenticatedApp')
+);
+
+const AuthenticatedApp = React.lazy(
+  () => import('./pages/index/AuthenticatedApp')
+);
+
+const PageSpinner = () => <span>Loader goes here</span>;
+
+const App = (): JSX.Element => {
+  const { isAuthenticated } = useAuth();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <React.Suspense fallback={<PageSpinner />}>
+        {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      </React.Suspense>
+    </Router>
   );
-}
+};
 
 export default App;
