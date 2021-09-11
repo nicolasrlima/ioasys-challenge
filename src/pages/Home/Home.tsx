@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import api from 'services/api';
 
 const Home = (): JSX.Element => (
   <div>
