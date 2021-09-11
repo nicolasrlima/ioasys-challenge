@@ -6,7 +6,7 @@ export const StyledTypography = styled.div<{
   color: Color;
   variant: Variant;
 }>`
-  color: ${({ color }) => color};
+  color: ${({ color }) => `var(--${color})`};
 
   font-size: ${({ variant }) =>
     ((variant === 'titleBold' || variant === 'titleThin') && '1.75rem') ||

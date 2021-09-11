@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('data');
   };
 
   return (

@@ -5,6 +5,7 @@ import { Color, Variant } from './interfaces';
 
 interface TypographyProps {
   children: React.ReactNode;
+  className?: string;
   color?: Color;
   component: ElementType;
   variant?: Variant;
@@ -12,11 +13,17 @@ interface TypographyProps {
 
 const Typography = ({
   children,
+  className,
   color = 'dark',
   component,
   variant = 'body'
 }: TypographyProps): JSX.Element => (
-  <StyledTypography as={component} color={color} variant={variant}>
+  <StyledTypography
+    as={component}
+    className={className}
+    color={color}
+    variant={variant}
+  >
     {children}
   </StyledTypography>
 );

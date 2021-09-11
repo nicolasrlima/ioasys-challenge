@@ -5,4 +5,4 @@ export type Variant =
   | 'subtitleThin'
   | 'body';
 
-export type Color = 'white' | 'dark' | 'primary';
+export type Color = 'white' | 'dark' | 'primary' | 'gray';
