@@ -1,13 +1,23 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
+import jwt from 'jsonwebtoken';
+
+type User = {
+  id: string;
+  name: string;
+  email: string;
+  gender: 'M' | 'F';
+  birthdate: string;
+};
 
 type AuthParams = {
   token: string;
+  user: User;
 };
 
 type AuthContextData = {
   isAuthenticated: boolean;
-  authenticate: ({ token }: AuthParams) => void;
+  authenticate: ({ token, user }: AuthParams) => void;
   logout: () => void;
 };
 
@@ -30,9 +40,11 @@ export const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
     () => Boolean(localToken?.length) ?? false
   );
 
-  const authenticate = ({ token }: AuthParams) => {
+  const authenticate = ({ token, user }: AuthParams) => {
+    const userToken = jwt.sign(user, 'secret');
     setIsAuthenticated(true);
     localStorage.setItem('token', token);
+    localStorage.setItem('data', userToken);
   };
 
   const logout = () => {
