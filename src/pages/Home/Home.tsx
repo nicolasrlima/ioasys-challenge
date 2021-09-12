@@ -7,6 +7,7 @@ import Pagination from 'components/Pagination/Pagination';
 import useGet from 'hooks/useGet';
 import { HOME } from 'routes/AuthenticatedRoutes';
 
+import HomeLoader from './components/HomeLoader/HomeLoader';
 import { BookListContainer } from './Styled';
 
 interface Book {
@@ -41,39 +42,40 @@ const Home = (): JSX.Element => {
     push(`${HOME}/${newPage}`);
   };
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <BookListContainer>
-      {data &&
-        data.data.map(
-          ({
-            id,
-            title,
-            authors,
-            imageUrl,
-            pageCount,
-            publisher,
-            published
-          }: Book) => (
-            <Card
-              author={authors[0]}
-              key={id}
-              imageUrl={imageUrl}
-              pageCount={pageCount}
-              published={published}
-              publisher={publisher}
-              title={title}
-            />
-          )
-        )}
-      <Pagination
-        currentPage={page}
-        onPageChange={goToPage}
-        totalPages={data.totalPages}
-      />
+      {data ? (
+        <>
+          {data.data.map(
+            ({
+              id,
+              title,
+              authors,
+              imageUrl,
+              pageCount,
+              publisher,
+              published
+            }: Book) => (
+              <Card
+                author={authors[0]}
+                key={id}
+                imageUrl={imageUrl}
+                pageCount={pageCount}
+                published={published}
+                publisher={publisher}
+                title={title}
+              />
+            )
+          )}
+          <Pagination
+            currentPage={page}
+            onPageChange={goToPage}
+            totalPages={data.totalPages}
+          />
+        </>
+      ) : (
+        <HomeLoader cardsCount={12} />
+      )}
     </BookListContainer>
   );
 };
