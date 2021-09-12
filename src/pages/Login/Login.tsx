@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { ReactComponent as IoasysLogo } from 'assets/ioasys-logo.svg';
+import { ReactComponent as IoasysLogoLight } from 'assets/ioasys-logo-light.svg';
 import TextField from 'components/TextField/TextField';
 import Tooltip from 'components/Tooltip/Tooltip';
 import Typography from 'components/Typography/Typography';
@@ -44,7 +44,7 @@ const Login = (): JSX.Element => {
   return (
     <LoginContainer>
       <LogoContainer>
-        <IoasysLogo />
+        <IoasysLogoLight />
         <Typography component="h1" color="white" variant="titleThin">
           Books
         </Typography>

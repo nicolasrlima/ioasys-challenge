@@ -6,7 +6,7 @@ export const StyledTypography = styled.div<{
   color: Color;
   variant: Variant;
 }>`
-  color: ${({ color }) => color};
+  color: ${({ color }) => `var(--${color})`};
 
   font-size: ${({ variant }) =>
     ((variant === 'titleBold' || variant === 'titleThin') && '1.75rem') ||
@@ -18,4 +18,8 @@ export const StyledTypography = styled.div<{
     ((variant === 'titleBold' || variant === 'subtitleBold') && '700') ||
     ((variant === 'titleThin' || variant === 'subtitleThin') && '300') ||
     (variant === 'body' && '400')};
+
+  & strong {
+    font-weight: 700;
+  }
 `;
