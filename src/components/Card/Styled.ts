@@ -11,7 +11,7 @@ export const CardContainer = styled.div`
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    transform: scale(1.005);
+    transform: scale(1.01);
   }
 `;
 

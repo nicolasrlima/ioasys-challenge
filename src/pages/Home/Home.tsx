@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import Card from 'components/Card/Card';
+import Pagination from 'components/Pagination/Pagination';
 import useGet from 'hooks/useGet';
+import { HOME } from 'routes/AuthenticatedRoutes';
 
 import { BookListContainer } from './Styled';
 
@@ -24,11 +26,24 @@ interface Book {
 
 const Home = (): JSX.Element => {
   const { page } = useParams<{ page: string }>();
+  const { push } = useHistory();
 
-  const { data } = useGet<{ data: Book[] }>('/books', {
+  const { data } = useGet<{
+    data: Book[];
+    totalItems: number;
+    totalPages: number;
+  }>('/books', {
     page,
     amount: '12'
   });
+
+  const goToPage = (newPage: number): void => {
+    push(`${HOME}/${newPage}`);
+  };
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <BookListContainer>
@@ -54,6 +69,11 @@ const Home = (): JSX.Element => {
             />
           )
         )}
+      <Pagination
+        currentPage={page}
+        onPageChange={goToPage}
+        totalPages={data.totalPages}
+      />
     </BookListContainer>
   );
 };

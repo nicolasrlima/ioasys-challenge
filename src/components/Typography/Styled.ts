@@ -18,4 +18,8 @@ export const StyledTypography = styled.div<{
     ((variant === 'titleBold' || variant === 'subtitleBold') && '700') ||
     ((variant === 'titleThin' || variant === 'subtitleThin') && '300') ||
     (variant === 'body' && '400')};
+
+  & strong {
+    font-weight: 700;
+  }
 `;
