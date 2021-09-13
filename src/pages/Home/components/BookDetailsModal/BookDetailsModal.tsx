@@ -48,7 +48,7 @@ const BookDetailsModal = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       {data ? (
         <DetailsContainer>
-          <BookCover src={data.imageUrl} />
+          <BookCover src={data.imageUrl} alt={`Capa do livro ${data.title}`} />
           <AboutBookContainer>
             <TitleAndAuthorContainer>
               <Typography component="h1" variant="titleBold">
