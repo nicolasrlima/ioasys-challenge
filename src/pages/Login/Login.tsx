@@ -33,9 +33,10 @@ const Login = (): JSX.Element => {
         email,
         password
       });
+      const refreshToken = headers['refresh-token'];
       const token = headers.authorization;
 
-      authenticate({ token, user: data });
+      authenticate({ refreshToken, token, user: data });
     } catch (error) {
       setLoginFailed(true);
     }

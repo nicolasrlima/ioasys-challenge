@@ -16,7 +16,9 @@ import {
 } from './Styled';
 
 const Header = (): JSX.Element => {
-  const userData = jwt.decode(localStorage.getItem('data'));
+  const { userData } = useAuth();
+
+  const userDataDecoded = jwt.decode(userData);
   const { logout } = useAuth();
 
   return (
@@ -29,7 +31,7 @@ const Header = (): JSX.Element => {
       </HeaderLogoContainer>
       <UserActionsContainer>
         <UserName component="span" variant="body">
-          Bem vindo, <strong>{userData.name}</strong>
+          Bem vindo, <strong>{userDataDecoded.name}</strong>
         </UserName>
         <LogoutIconContainer>
           <LogoutIcon onClick={logout} />
