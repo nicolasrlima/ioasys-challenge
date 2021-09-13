@@ -30,7 +30,7 @@ const Card = ({
   title
 }: CardProps): JSX.Element => (
   <CardContainer onClick={onClick}>
-    <BookCover src={imageUrl} />
+    <BookCover src={imageUrl} alt={`Capa do livro ${title}`} />
     <BookInfoContainer>
       <BookTitleAndAuthorContainer>
         <Typography component="h2" variant="subtitleBold">
