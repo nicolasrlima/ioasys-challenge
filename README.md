@@ -54,6 +54,19 @@ Para fazer o build do projeto para produção.
 
 Desenvolvi o projeto aplicando o mobile first, como um padrão de design. Outro conceito aplicado no design foi o de design otimista, sempre buscando mostrar uma resposta ao usuário mais rápido possível, para isso utilizei o swr da Vercel que faz um cache das requisições e evita estados de carregamento ao transitar entre páginas recém carregadas, vale dizer que o swr esta configurado para sempre refazer a requisição para e atualizar a tela caso haja disparidade entre o cache e a resposta mais atualizada.
 
+### Gerenciamento de tarefas
+
+Para controle das tarefas a serem feitas, utilizei o Jira, criando Epics, tasks e bugs. Separei o projeto em 3 Epics:
+
+- Create project
+  - Criação do projeto com CRA e do repositório.
+  - Configuração do eslint e do prettier.
+- Login
+  - Criação da página de Login
+- Home
+  - Criação da página de listagem de livros.
+  - Criação do modal de detalhamento de livros.
+
 ## Conclusão
 
 Novamente gostaria de agradecer a oportunidade! Espero que gostem do trabalho tanto quanto gostei de desenvolvê-lo :)
