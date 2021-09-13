@@ -13,6 +13,7 @@ import {
 interface CardProps {
   author: string;
   imageUrl: string;
+  onClick: () => void;
   pageCount: number;
   published: number;
   publisher: string;
@@ -22,12 +23,13 @@ interface CardProps {
 const Card = ({
   author,
   imageUrl,
+  onClick,
   pageCount,
   published,
   publisher,
   title
 }: CardProps): JSX.Element => (
-  <CardContainer>
+  <CardContainer onClick={onClick}>
     <BookCover src={imageUrl} />
     <BookInfoContainer>
       <BookTitleAndAuthorContainer>

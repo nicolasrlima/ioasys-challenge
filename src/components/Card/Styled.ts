@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.div`
-  background-color: var(--white);
-  border-radius: 0.25rem;
+import Paper from 'components/Paper/Paper';
+
+export const CardContainer = styled(Paper)`
   box-shadow: 0px 6px 24px 0px #54105f13;
   cursor: pointer;
   display: flex;

@@ -9,7 +9,7 @@ import { HOME } from 'routes/AuthenticatedRoutes';
 const AuthenticatedApp = (): JSX.Element => (
   <AuthenticatedLayout>
     <Switch>
-      <Route path={`${HOME}/:page`} component={Home} exact />
+      <Route path={`${HOME}/:page/:bookId?`} component={Home} exact />
       <Route>
         <Redirect to={`${HOME}/1`} push />
       </Route>
