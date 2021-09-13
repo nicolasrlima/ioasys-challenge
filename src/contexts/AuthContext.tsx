@@ -11,14 +11,16 @@ type User = {
 };
 
 type AuthParams = {
+  refreshToken: string;
   token: string;
   user: User;
 };
 
 type AuthContextData = {
   isAuthenticated: boolean;
-  authenticate: ({ token, user }: AuthParams) => void;
+  authenticate: ({ refreshToken, token, user }: AuthParams) => void;
   logout: () => void;
+  userData;
 };
 
 type ProviderProps = {
@@ -28,21 +30,29 @@ type ProviderProps = {
 export const AuthContext = React.createContext<AuthContextData>({
   isAuthenticated: false,
   authenticate: () => {},
-  logout: () => {}
+  logout: () => {},
+  userData: ''
 });
 
 AuthContext.displayName = 'AuthContext';
 
 export const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   const localToken = localStorage.getItem('token');
+  const localUserData = localStorage.getItem('data');
 
   const [isAuthenticated, setIsAuthenticated] = React.useState(
     () => Boolean(localToken?.length) ?? false
   );
 
-  const authenticate = ({ token, user }: AuthParams) => {
+  const [userData, setUserData] = React.useState<string>(
+    () => localUserData || ''
+  );
+
+  const authenticate = ({ refreshToken, token, user }: AuthParams) => {
     const userToken = jwt.sign(user, 'secret');
     setIsAuthenticated(true);
+    setUserData(userToken);
+    localStorage.setItem('refreshToken', refreshToken);
     localStorage.setItem('token', token);
     localStorage.setItem('data', userToken);
   };
@@ -54,7 +64,9 @@ export const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   };
 
   return (
-    <AuthContext.Provider value={{ authenticate, isAuthenticated, logout }}>
+    <AuthContext.Provider
+      value={{ authenticate, isAuthenticated, logout, userData }}
+    >
       {children}
     </AuthContext.Provider>
   );
