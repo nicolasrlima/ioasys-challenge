@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useParams, useHistory } from 'react-router-dom';
 
@@ -36,6 +36,12 @@ const Home = (): JSX.Element => {
   const goToPage = (newPage: number): void => {
     push(`${HOME}/${newPage}`);
   };
+
+  useEffect(() => {
+    if (data && page > data?.totalPages) {
+      push(`${HOME}/1`);
+    }
+  }, [data]);
 
   return (
     <BookListContainer>

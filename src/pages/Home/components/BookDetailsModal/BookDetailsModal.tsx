@@ -1,9 +1,12 @@
 import React from 'react';
 
+import { useHistory, useParams } from 'react-router-dom';
+
 import { ReactComponent as QuotesIcon } from 'assets/quotes-icon.svg';
 import Modal from 'components/Modal/Modal';
 import Typography from 'components/Typography/Typography';
 import useGet from 'hooks/useGet';
+import { HOME } from 'routes/AuthenticatedRoutes';
 
 import BookDetailsLoader from './components/BookDetailsLoader/BookDetailsLoader';
 import { Book } from '../../interfaces';
@@ -28,11 +31,18 @@ const BookDetailsModal = ({
   isOpen,
   onClose
 }: BookDetailsModalProps): JSX.Element | null => {
+  const { page } = useParams<{ page: string }>();
+  const { push } = useHistory();
+
   if (!isOpen) {
     return null;
   }
 
-  const { data } = useGet<Book>(`/books/${bookId}`);
+  const { data, error } = useGet<Book>(`/books/${bookId}`);
+
+  if (error) {
+    push(`${HOME}/${page}`);
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
