@@ -34,8 +34,8 @@ const Modal = ({
   }
 
   return (
-    <ModalContainer onClick={onClickOutside}>
-      <ModalCloseButton onClick={onClose}>
+    <ModalContainer aria-label="wrapper" onClick={onClickOutside}>
+      <ModalCloseButton aria-label="close-modal-button" onClick={onClose}>
         <CloseIcon />
       </ModalCloseButton>
       <ModalPaper>{children}</ModalPaper>
