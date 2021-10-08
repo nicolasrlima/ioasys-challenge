@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react';
 
 import { StyledButton } from './Styled';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   children: React.ReactNode;
 }

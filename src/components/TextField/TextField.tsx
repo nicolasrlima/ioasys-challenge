@@ -17,7 +17,7 @@ type TextFieldButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   onButtonClick?: () => void;
 };
 
-interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   register?: UseFormRegisterReturn;
   label: string;
   button?: TextFieldButtonProps;
