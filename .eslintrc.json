@@ -43,7 +43,13 @@
     "react/require-default-props": "off",
     "import/prefer-default-export": "off",
     "camelcase": "off",
-    "react/no-unused-prop-types": "off"
+    "react/no-unused-prop-types": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.stories.tsx"]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
