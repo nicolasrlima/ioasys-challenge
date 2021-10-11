@@ -24,3 +24,5 @@ jobs:
         run: yarn build
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://nicolas-ioasys-challenge-bucket --acl public-read --delete
+      - name: Invalidate cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id E3IAD0C32ZXGKH --paths "/*"
