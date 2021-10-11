@@ -47,7 +47,7 @@ const Login = (): JSX.Element => {
       <LogoContainer>
         <IoasysLogoLight />
         <Typography component="h1" color="white" variant="titleThin">
-          Book
+          Books
         </Typography>
       </LogoContainer>
       <LoginForm>
