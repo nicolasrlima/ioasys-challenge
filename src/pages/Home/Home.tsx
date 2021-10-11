@@ -38,52 +38,56 @@ const Home = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (data && page > data?.totalPages) {
+    if (data && page > Math.ceil(data?.totalPages)) {
       push(`${HOME}/1`);
     }
   }, [data]);
 
   return (
-    <BookListContainer>
-      {data ? (
-        <>
-          {data.data.map(
-            ({
-              id,
-              title,
-              authors,
-              imageUrl,
-              pageCount,
-              publisher,
-              published
-            }: Book) => (
-              <Card
-                author={authors[0]}
-                key={id}
-                onClick={() => openDetailsModal(id)}
-                imageUrl={imageUrl}
-                pageCount={pageCount}
-                published={published}
-                publisher={publisher}
-                title={title}
-              />
-            )
-          )}
-          <Pagination
-            currentPage={page}
-            onPageChange={goToPage}
-            totalPages={data.totalPages}
-          />
-          <BookDetailsModal
-            bookId={bookId}
-            isOpen={Boolean(bookId)}
-            onClose={closeDetailsModal}
-          />
-        </>
-      ) : (
-        <HomeLoader cardsCount={12} />
+    <>
+      <BookListContainer>
+        {data ? (
+          <>
+            {data.data.map(
+              ({
+                id,
+                title,
+                authors,
+                imageUrl,
+                pageCount,
+                publisher,
+                published
+              }: Book) => (
+                <Card
+                  author={authors[0]}
+                  key={id}
+                  onClick={() => openDetailsModal(id)}
+                  imageUrl={imageUrl}
+                  pageCount={pageCount}
+                  published={published}
+                  publisher={publisher}
+                  title={title}
+                />
+              )
+            )}
+            <BookDetailsModal
+              bookId={bookId}
+              isOpen={Boolean(bookId)}
+              onClose={closeDetailsModal}
+            />
+          </>
+        ) : (
+          <HomeLoader cardsCount={12} />
+        )}
+      </BookListContainer>
+      {data && (
+        <Pagination
+          currentPage={page}
+          onPageChange={goToPage}
+          totalPages={data.totalPages}
+        />
       )}
-    </BookListContainer>
+    </>
   );
 };
 

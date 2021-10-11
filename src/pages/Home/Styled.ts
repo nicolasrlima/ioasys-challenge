@@ -6,6 +6,7 @@ export const BookListContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-bottom: 1rem;
   margin-top: 2.5rem;
 
   @media (min-width: ${BREAKPOINT_SM}) {
