@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
 import jwt from 'jsonwebtoken';
+import { useCallback } from 'react';
 
 type User = {
   id: string;
@@ -48,20 +49,23 @@ export const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
     () => localUserData || ''
   );
 
-  const authenticate = ({ refreshToken, token, user }: AuthParams) => {
-    const userToken = jwt.sign(user, 'secret');
-    setIsAuthenticated(true);
-    setUserData(userToken);
-    localStorage.setItem('refreshToken', refreshToken);
-    localStorage.setItem('token', token);
-    localStorage.setItem('data', userToken);
-  };
+  const authenticate = useCallback(
+    ({ refreshToken, token, user }: AuthParams) => {
+      const userToken = jwt.sign(user, 'secret');
+      setIsAuthenticated(true);
+      setUserData(userToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('token', token);
+      localStorage.setItem('data', userToken);
+    },
+    []
+  );
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setIsAuthenticated(false);
     localStorage.removeItem('token');
     localStorage.removeItem('data');
-  };
+  }, []);
 
   return (
     <AuthContext.Provider

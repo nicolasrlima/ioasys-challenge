@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "commit": "git-cz",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "deploy": "yarn build && aws s3 sync build/ s3://nicolas-ioasys-challenge-bucket --acl public-read"
   },
   "eslintConfig": {
     "extends": [
