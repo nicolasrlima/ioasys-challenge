@@ -17,15 +17,17 @@ describe('<Select />', () => {
       }
     ];
 
-    const { findByTestId } = render(
+    const { container } = render(
       <Select
-        data-testid="select"
+        data-testid="select-id"
         onChange={mockFn}
         options={mockOptions}
         selectedValue="option-1"
       />
     );
 
-    expect(findByTestId('select')).toBeInTheDocument();
+    expect(
+      container.querySelector('div[value="option-1"]')
+    ).toBeInTheDocument();
   });
 });

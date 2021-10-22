@@ -18,11 +18,11 @@ type Option = {
   value: string;
 };
 
-type SelectProps = {
+export type SelectProps = {
   options: Option[];
   onChange: (value: string) => void;
   selectedValue: string;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export const Select = ({
   onChange,
