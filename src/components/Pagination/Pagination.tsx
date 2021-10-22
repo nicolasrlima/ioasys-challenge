@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ReactComponent as ChevronDark } from 'assets/chevron-dark.svg';
 import Typography from 'components/Typography/Typography';
+import useTranslate from 'hooks/useTranslate';
 
 import {
   PagesNavigation,
@@ -21,6 +22,7 @@ const Pagination = ({
   onPageChange,
   totalPages
 }: PaginationProps): JSX.Element => {
+  const translate = useTranslate();
   const totalPagesCeil = Math.ceil(totalPages);
 
   const goToPreviousPage = (): void => {
@@ -42,7 +44,8 @@ const Pagination = ({
           <ChevronDark />
         </PaginationButtonPrevious>
         <Typography component="span">
-          Página <strong>{currentPage}</strong> de{' '}
+          {translate('labels.page')} <strong>{currentPage}</strong>{' '}
+          {translate('labels.relationshipPreposition')}{' '}
           <strong>{totalPagesCeil}</strong>
         </Typography>
         <PaginationButtonNext
